@@ -3,8 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "../MovieCard/MovieCard";
 import { fetchAsyncShows } from "../../features/movies/movieSlice";
 import "./MovieListing.scss";
+import Slider from "react-slick";
 
 const MovieListing = () => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 3,
+  };
+
   const dispatch = useDispatch();
   const { movies, shows } = useSelector((state) => state.app);
   // console.log("All shows", shows);
@@ -38,11 +47,13 @@ const MovieListing = () => {
     <div className="movie-wrapper">
       <div className="movie-list">
         <h2>Movies</h2>
-        <div className="movie-container">{renderMovies}</div>
+        <div className="movie-container">
+          <Slider {...settings}>{renderMovies}</Slider>
+        </div>
       </div>
       <div className="show-list">
         <h2>Shows</h2>
-        <div className="movie-container">{renderShows} </div>
+        <Slider {...settings}>{renderShows}</Slider>
       </div>
     </div>
   );
