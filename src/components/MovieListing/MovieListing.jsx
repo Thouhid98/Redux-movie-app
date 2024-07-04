@@ -7,7 +7,7 @@ import "./MovieListing.scss";
 const MovieListing = () => {
   const dispatch = useDispatch();
   const { movies, shows } = useSelector((state) => state.app);
-  console.log("All shows", shows);
+  // console.log("All shows", shows);
   useEffect(() => {
     dispatch(fetchAsyncShows());
   }, []);

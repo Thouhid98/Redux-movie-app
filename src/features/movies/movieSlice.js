@@ -64,10 +64,6 @@ const movieSlice = createSlice({
         console.log("Fetched Successfully!");
         state.selectMovieOrShow = action.payload;
       });
-    // [fetchAsyncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
-    //   console.log("Fetched Successfully!");
-    //   return { ...state, selectMovieOrShow: payload };
-    // },
   },
 });
 
