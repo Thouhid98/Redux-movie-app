@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "../MovieCard/MovieCard";
 import { fetchAsyncShows } from "../../features/movies/movieSlice";
+import "./MovieListing.scss";
 
 const MovieListing = () => {
   const dispatch = useDispatch();

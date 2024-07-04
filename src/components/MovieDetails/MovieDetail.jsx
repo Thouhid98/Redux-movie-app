@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./MovieDetails.scss";
 const MovieDetail = () => {
   return (
     <div>
