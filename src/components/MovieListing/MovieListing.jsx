@@ -15,10 +15,11 @@ const MovieListing = () => {
   };
 
   const dispatch = useDispatch();
+  const showText = "Friends";
   const { movies, shows } = useSelector((state) => state.app);
   // console.log("All shows", shows);
   useEffect(() => {
-    dispatch(fetchAsyncShows());
+    dispatch(fetchAsyncShows(showText));
   }, []);
 
   let renderMovies,

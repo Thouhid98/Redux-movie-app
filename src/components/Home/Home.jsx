@@ -5,8 +5,10 @@ import MovieListing from "../MovieListing/MovieListing";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const movieText = "Harry";
+
   useEffect(() => {
-    dispatch(fetchAsyncMovies());
+    dispatch(fetchAsyncMovies(movieText));
   }, []);
 
   return (
