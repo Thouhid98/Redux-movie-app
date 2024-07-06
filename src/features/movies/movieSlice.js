@@ -34,12 +34,29 @@ const initialState = {
   movies: {},
   shows: {},
   selectMovieOrShow: {},
+  user: null,
+  status: "idle",
+  error: null,
 };
 
 const movieSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {},
+  reducers: {
+    setUser(state, action) {
+      state.user = action.payload;
+    },
+    setStatus(state, action) {
+      state.status = action.payload;
+    },
+    setError(state, action) {
+      state.error = action.error;
+    },
+    clearError(state) {
+      state.error = null;
+    },
+  },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchAsyncMovies.pending, (state) => {
@@ -64,5 +81,5 @@ const movieSlice = createSlice({
       });
   },
 });
-
+export const { setUser, setStatus, setError, clearError } = movieSlice.actions;
 export default movieSlice.reducer;

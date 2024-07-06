@@ -5,7 +5,8 @@ import Footer from "./components/Footer/Footer";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import "./App.scss";
 import MovieDetail from "./components/MovieDetails/MovieDetail";
-
+import SignUp from "./components/Authentication/SignUp";
+import Login from "./components/Authentication/Login";
 function App() {
   return (
     <div className="app">
@@ -14,6 +15,8 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/movie/:imdbID" element={<MovieDetail />} />
             <Route element={<PageNotFound />} />
           </Routes>
