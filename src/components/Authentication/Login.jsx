@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { loginUser, monitorAuthState } from "../../features/authActions";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // console.log(email, password);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(monitorAuthState());
   }, [dispatch]);
 
+  // console.log(user?.email, status);
+
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(loginUser(email, password));
+    navigate("/");
   };
 
   return (
@@ -34,7 +38,7 @@ const Login = () => {
           <div className="absolute -ml-12 -mt-20 w-[1px] h-[510px] bg-gray-300"></div>
           <div className="-mt-20 pr-10">
             <h2 className="text-center text-gray-300 text-3xl font-normal -ml-[90px] mb-10 ">
-              Welcome to Vuexy!
+              Welcome to tflix!
             </h2>
             <p className="-mt-6 mb-5 text-gray-400">
               Please sign-in to your account and start the adventure
@@ -55,6 +59,7 @@ const Login = () => {
                 placeholder=""
                 className="input border border-[#d0cbda] mb-5   rounded-md p-3 w-[375px] h-[35px]"
                 required
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -72,6 +77,7 @@ const Login = () => {
                 placeholder=""
                 className="input border border-[#d0cbda] rounded-md mb-5 p-3 w-[375px] h-[35px]"
                 required
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <br />
@@ -85,14 +91,16 @@ const Login = () => {
               </label>
             </div>
 
-            <Link to="/">
-              <div className=" mt-6">
-                <button className="btn rounded-md mb-5  w-[375px] h-[35px] bg-[#675DD8]    text-white font-medium text-center">
-                  <span className="-mt-4">Login</span>
-                </button>
-              </div>
-            </Link>
+            <div className=" mt-6">
+              <button
+                type="submit"
+                className="btn  rounded-md mb-5  w-[375px] h-[35px] bg-[#675DD8]    text-white font-medium text-center"
+              >
+                Login
+              </button>
+            </div>
           </form>
+
           <div className="-ml-6">
             <p className=" text-center text-gray-500">
               New on our platform ?

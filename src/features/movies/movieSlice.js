@@ -34,7 +34,7 @@ const initialState = {
   movies: {},
   shows: {},
   selectMovieOrShow: {},
-  user: null,
+  user: {},
   status: "idle",
   error: null,
 };
@@ -50,9 +50,14 @@ const movieSlice = createSlice({
       state.status = action.payload;
     },
     setError(state, action) {
-      state.error = action.error;
+      state.error = action.payload;
     },
     clearError(state) {
+      state.error = null;
+    },
+    logout(state) {
+      state.user = null;
+      state.status = "succeeded";
       state.error = null;
     },
   },
@@ -81,5 +86,6 @@ const movieSlice = createSlice({
       });
   },
 });
-export const { setUser, setStatus, setError, clearError } = movieSlice.actions;
+export const { setUser, setStatus, setError, clearError, logout } =
+  movieSlice.actions;
 export default movieSlice.reducer;

@@ -4,8 +4,9 @@ import "./Footer.scss";
 const Footer = () => {
   return (
     <div className="footer">
-      <div>Movie App</div>
-      <div>©2024, Movie, Inc. or its affiliates</div>
+      <div className="text-base mt-5 font-bold">
+        ©2024, Movie, Inc. or its affiliates
+      </div>
     </div>
   );
 };

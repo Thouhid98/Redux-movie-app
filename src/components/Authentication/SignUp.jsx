@@ -9,7 +9,6 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   console.log(email, password);
   const dispatch = useDispatch();
-  // const { user } = useSelector((state) => state.movieSlice.user);
 
   const handleRegister = (e) => {
     e.preventDefault();
