@@ -5,15 +5,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../../features/authActions";
 
 const SignUp = () => {
+  const [displayName, setdisplayName] = useState("");
+  const [photoURL, setphotoURL] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(email, password);
+  // console.log(email, password, displayName, photoURL);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(createUser(email, password));
+    console.log(email, password, displayName, photoURL);
+    dispatch(createUser(email, password, displayName, photoURL));
     e.target.reset();
     navigate("/");
   };
@@ -42,6 +45,38 @@ const SignUp = () => {
           </div>
 
           <form className="-ml-2" onSubmit={handleRegister}>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text -mb-6  text-sm font-sm text-gray-500">
+                  Name
+                </span>
+              </label>
+              <br />
+              <input
+                type="text"
+                name="displayName"
+                placeholder=" "
+                className="input border mb-5  border-[#d0cbda] rounded-md p-3 w-[375px] h-[35px]"
+                required
+                onChange={(e) => setdisplayName(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text -mb-6  text-sm font-sm text-gray-500">
+                  photoURL
+                </span>
+              </label>
+              <br />
+              <input
+                type="text"
+                name="photoURL"
+                placeholder=" "
+                className="input border mb-5  border-[#d0cbda] rounded-md p-3 w-[375px] h-[35px]"
+                required
+                onChange={(e) => setphotoURL(e.target.value)}
+              />
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text -mb-6  text-sm font-sm text-gray-500">

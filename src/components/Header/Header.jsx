@@ -54,7 +54,7 @@ const Header = () => {
         <div>
           <div className="avatar online">
             <div className="w-9 rounded-full">
-              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              <img src={user.photoURL} />
             </div>
           </div>
           <Link to="/login">
@@ -62,7 +62,7 @@ const Header = () => {
               onClick={handleLogout}
               className="absolute -ml-[46px] mt-8 font-semibold"
             >
-              Logout
+              Logout {user.displayName}
             </button>
           </Link>
         </div>
