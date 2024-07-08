@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser, monitorAuthState } from "../../features/authActions";
 
@@ -13,8 +13,6 @@ const Login = () => {
   useEffect(() => {
     dispatch(monitorAuthState());
   }, [dispatch]);
-
-  // console.log(user?.email, status);
 
   const handleLogin = (e) => {
     e.preventDefault();

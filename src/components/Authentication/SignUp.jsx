@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { createUser } from "../../features/authActions";
 
@@ -9,11 +9,13 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   console.log(email, password);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(createUser(email, password));
     e.target.reset();
+    navigate("/");
   };
 
   return (

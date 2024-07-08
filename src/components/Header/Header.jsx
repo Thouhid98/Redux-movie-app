@@ -57,12 +57,14 @@ const Header = () => {
               <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
             </div>
           </div>
-          <button
-            onClick={handleLogout}
-            className="absolute -ml-[46px] mt-8 font-semibold"
-          >
-            Logout
-          </button>
+          <Link to="/login">
+            <button
+              onClick={handleLogout}
+              className="absolute -ml-[46px] mt-8 font-semibold"
+            >
+              Logout
+            </button>
+          </Link>
         </div>
       ) : (
         <div className="avatar offline -mt-3">

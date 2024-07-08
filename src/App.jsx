@@ -7,6 +7,8 @@ import "./App.scss";
 import MovieDetail from "./components/MovieDetails/MovieDetail";
 import SignUp from "./components/Authentication/SignUp";
 import Login from "./components/Authentication/Login";
+import PlayMovie from "./components/MovieDetails/PlayMovie";
+
 function App() {
   return (
     <div className="app">
@@ -18,6 +20,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/movie/:imdbID" element={<MovieDetail />} />
+            <Route path="/playmovie" element={<PlayMovie />} />
             <Route element={<PageNotFound />} />
           </Routes>
         </div>

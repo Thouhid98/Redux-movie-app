@@ -3,11 +3,14 @@ import "./MovieDetails.scss";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncMovieOrShowDetail } from "../../features/movies/movieSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const MovieDetail = () => {
   const { imdbID } = useParams();
   const dispatch = useDispatch();
-  const { selectMovieOrShow } = useSelector((state) => state.app);
+  const navigate = useNavigate();
+  const { selectMovieOrShow, user } = useSelector((state) => state.app);
+  const isLoggedIn = !!user?.email;
   // console.log(selectMovieOrShow);
 
   useEffect(() => {
@@ -66,6 +69,18 @@ const MovieDetail = () => {
           </div>
           <div className="section-right">
             <img src={selectMovieOrShow.Poster} alt={selectMovieOrShow.Title} />
+
+            {isLoggedIn ? (
+              <Link to="/playmovie">
+                <button className="btn w-[340px] mt-2  bg-gray-500">
+                  Play Now
+                </button>
+              </Link>
+            ) : (
+              <button className="btn w-[340px] mt-2  bg-gray-300" disabled>
+                Play Now
+              </button>
+            )}
           </div>
         </>
       )}
