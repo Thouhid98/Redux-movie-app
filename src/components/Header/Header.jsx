@@ -10,6 +10,7 @@ import { monitorAuthState, logoutUser } from "../../features/authActions";
 
 const Header = () => {
   const [term, setTerm] = useState("");
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.app.user);
 
@@ -52,24 +53,34 @@ const Header = () => {
 
       {user ? (
         <div>
-          <div className="avatar online">
-            <div className="w-9 rounded-full">
-              <img src={user.photoURL} />
+          <div className="avatar online mt-2">
+            <div className="w-12 rounded-full ">
+              <Link to="/profile">
+                <img
+                  className="cursor-pointer"
+                  // onClick={gotoProfile}
+                  src={user.photoURL}
+                />
+              </Link>
             </div>
           </div>
-          <Link to="/login">
+
+          {/* <Link to="/login">
             <button
               onClick={handleLogout}
               className="absolute -ml-[46px] mt-8 font-semibold"
             >
-              Logout {user.displayName}
+              Logout
             </button>
-          </Link>
+          </Link> */}
         </div>
       ) : (
         <div className="avatar offline -mt-3">
           <div className="w-9 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img
+              className=" "
+              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+            />
           </div>
           <Link to="/login">
             <button className="absolute -ml-[40px] mt-8 font-semibold">
