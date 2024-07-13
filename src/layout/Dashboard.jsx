@@ -8,7 +8,7 @@ const Dashboard = () => {
   const { user } = useSelector((state) => state.app);
   const navigate = useNavigate();
 
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutUser());
     navigate("/login");
@@ -30,9 +30,9 @@ const Dashboard = () => {
               />
             </div>
           </div>
-          <div className="text-white mt-3  ">
-            <h2 className="ml-12    font-serif">Md Thouhid Hussain</h2>
-            <h2 className="ml-4  font-serif">thouhidhussain98@gmail.com</h2>
+          <div className="text-white text-center mt-3  ">
+            <h2 className=" font-serif">{user?.displayName}</h2>
+            <h2 className=" font-serif">{user?.email}</h2>
 
             <p className="flex gap-3 my-2 ml-[88px]">
               <FaFacebook className=" text-white  " />

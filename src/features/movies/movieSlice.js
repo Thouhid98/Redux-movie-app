@@ -49,6 +49,26 @@ export const saveUserToDatabase = createAsyncThunk(
   }
 );
 
+export const watchedMovies = createAsyncThunk(
+  "addwatchedmovies/watchedMovies",
+  async (emailAndDetails, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/addwatchedmovies",
+        emailAndDetails,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.message || error.message);
+    }
+  }
+);
+
 const initialState = {
   movies: {},
   shows: {},
@@ -110,6 +130,17 @@ const movieSlice = createSlice({
         state.status = "succeeded";
       })
       .addCase(saveUserToDatabase.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+
+      .addCase(watchedMovies.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(watchedMovies.fulfilled, (state) => {
+        state.status = "succeeded";
+      })
+      .addCase(watchedMovies.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
