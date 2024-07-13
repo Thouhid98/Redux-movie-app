@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser, monitorAuthState } from "../../features/authActions";
+import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -113,12 +114,12 @@ const Login = () => {
             <hr className="w-40 ml-1" />
           </div>
 
-          {/* <div className="flex gap-4 justify-center -ml-6 mt-10 items-center">
-          <FaFacebook className="text-blue-500 text-xl" />
-          <FaTwitter className="text-sky-500 text-xl" />
-          <FaLinkedin className="text-blue-700 text-xl" />
-          <FaGoogle className="text-red-500 text-xl" />
-        </div> */}
+          <div className="flex gap-4 justify-center -ml-6 mt-10 items-center">
+            <FaFacebook className="text-blue-500 text-xl" />
+            <FaTwitter className="text-sky-500 text-xl" />
+            <FaLinkedin className="text-blue-700 text-xl" />
+            <FaGoogle className="text-red-500 text-xl" />
+          </div>
         </div>
       </div>
     </div>

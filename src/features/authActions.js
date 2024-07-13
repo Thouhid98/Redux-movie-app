@@ -6,7 +6,13 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
-import { setUser, setStatus, setError, logout } from "./movies/movieSlice";
+import {
+  setUser,
+  setStatus,
+  setError,
+  logout,
+  saveUserToDatabase,
+} from "./movies/movieSlice";
 
 export const createUser =
   (email, password, displayName, photoURL) => async (dispatch) => {
@@ -23,12 +29,37 @@ export const createUser =
         photoURL: photoURL,
       });
       dispatch(setUser(user));
+      // Sending data to api
+      await dispatch(saveUserToDatabase(user));
       dispatch(setStatus("succeeded"));
     } catch (error) {
       dispatch(setError(error.message));
       dispatch(setStatus("failed"));
     }
   };
+
+// Update user data to firebase 
+// export const createUser =
+//   (email, password, displayName, photoURL) => async (dispatch) => {
+//     dispatch(setStatus("loading"));
+//     try {
+//       const userCredential = await createUserWithEmailAndPassword(
+//         auth,
+//         email,
+//         password
+//       );
+//       const user = userCredential.user;
+//       await updateProfile(user, {
+//         displayName: displayName,
+//         photoURL: photoURL,
+//       });
+//       dispatch(setUser(user));
+//       dispatch(setStatus("succeeded"));
+//     } catch (error) {
+//       dispatch(setError(error.message));
+//       dispatch(setStatus("failed"));
+//     }
+//   };
 
 // This is first time create User
 // export const createUser = (email, password) => async (dispatch) => {

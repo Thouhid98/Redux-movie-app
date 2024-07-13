@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import movieApi from "../../common/apis/movieApi";
 import { APIKey } from "../../common/apis/MovieApiKey";
+import axios from "axios";
 
+// Apis for ShowMovies and MovieDetails
 export const fetchAsyncMovies = createAsyncThunk(
   "fetchAsyncMovies",
   async (term) => {
@@ -11,7 +13,6 @@ export const fetchAsyncMovies = createAsyncThunk(
     return response.data;
   }
 );
-
 export const fetchAsyncShows = createAsyncThunk(
   "movies/fetchAsyncShows",
   async (term) => {
@@ -21,12 +22,30 @@ export const fetchAsyncShows = createAsyncThunk(
     return response.data;
   }
 );
-
 export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
   "fetchAsyncMovieOrShowDetail",
   async (id) => {
     const response = await movieApi.get(`?apiKey=${APIKey}&i=${id}&Plot=full`);
     return response.data;
+  }
+);
+// End Apis for ShowMovies and MovieDetails
+
+// Send userData to Mongodb database for using api
+
+export const saveUserToDatabase = createAsyncThunk(
+  "users/saveUserToDatabase",
+  async (user, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("http://localhost:5000/users", user, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.message || error.message);
+    }
   }
 );
 
@@ -81,8 +100,18 @@ const movieSlice = createSlice({
       })
       .addCase(fetchAsyncMovieOrShowDetail.fulfilled, (state, action) => {
         state.loading = false;
-        console.log("Fetched Successfully!");
         state.selectMovieOrShow = action.payload;
+      })
+
+      .addCase(saveUserToDatabase.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(saveUserToDatabase.fulfilled, (state) => {
+        state.status = "succeeded";
+      })
+      .addCase(saveUserToDatabase.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });

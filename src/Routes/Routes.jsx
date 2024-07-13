@@ -6,6 +6,9 @@ import SignUp from "../components/Authentication/SignUp";
 import MovieDetail from "../components/MovieDetails/MovieDetail";
 import PlayMovie from "../components/MovieDetails/PlayMovie";
 import PageNotFound from "../components/PageNotFound/PageNotFound";
+import Dashboard from "../layout/Dashboard";
+import Profile from "../components/Dashboard/Profile";
+import Admin from "../components/Dashboard/Admin";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +36,22 @@ export const router = createBrowserRouter([
       {
         path: "/playmovie",
         element: <PlayMovie></PlayMovie>,
+      },
+    ],
+  },
+
+  // Dashboard
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "profile",
+        element: <Profile></Profile>,
+      },
+      {
+        path: "admin",
+        element: <Admin></Admin>,
       },
     ],
   },

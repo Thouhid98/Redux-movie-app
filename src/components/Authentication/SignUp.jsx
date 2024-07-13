@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-// import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaGoogle, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { createUser } from "../../features/authActions";
 
 const SignUp = () => {
@@ -33,8 +33,8 @@ const SignUp = () => {
         </div>
 
         {/* Register form */}
-        <div className="w-[500px] ">
-          <div className="absolute -ml-12 -mt-28 w-[1px] h-[710px] bg-gray-300"></div>
+        <div className="w-[500px] p-5">
+          <div className="absolute -ml-12  w-[1px] h-[728px] bg-gray-300"></div>
           <div className=" pr-10">
             <h2 className="text-center text-gray-400 text-3xl font-normal -ml-[44px] mb-10 ">
               Adventure starts here
@@ -143,12 +143,12 @@ const SignUp = () => {
             <hr className="w-40 ml-1" />
           </div>
 
-          {/* <div className="flex gap-4 justify-center -ml-8 mt-10 items-center">
+          <div className="flex gap-4 justify-center -ml-8 my-5 items-center">
             <FaFacebook className="text-blue-500 text-xl" />
             <FaTwitter className="text-sky-500 text-xl" />
             <FaLinkedin className="text-blue-700 text-xl" />
             <FaGoogle className="text-red-500 text-xl" />
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

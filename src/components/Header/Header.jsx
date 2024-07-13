@@ -55,7 +55,7 @@ const Header = () => {
         <div>
           <div className="avatar online mt-2">
             <div className="w-12 rounded-full ">
-              <Link to="/profile">
+              <Link to="/dashboard/profile">
                 <img
                   className="cursor-pointer"
                   // onClick={gotoProfile}
