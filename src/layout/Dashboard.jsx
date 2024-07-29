@@ -17,6 +17,7 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(monitorAuthState());
   }, [dispatch]);
+
   return (
     <div className="flex min-h-screen ">
       <div>
@@ -55,7 +56,7 @@ const Dashboard = () => {
                 {/* <FaHome></FaHome> */}
                 <button
                   onClick={handleLogout}
-                  className="btn btn-outline bg-blue-600  text-white"
+                  className="btn btn-outline bg-gray-800  text-white"
                 >
                   Logout
                 </button>
@@ -65,7 +66,36 @@ const Dashboard = () => {
         </div>
         <div></div>
       </div>
+
+      {/* Outlet  */}
       <div className="flex-1 p-6">
+        <div>
+          <NavLink to="/dashboard/admin/allusers">
+            {/* <FaHome></FaHome> */}
+            <button className="btn btn-outline shadow-md shadow-sky-600 rounded-none mt-6 ml-4 text-white">
+              All Users
+            </button>
+          </NavLink>
+          <NavLink to="/dashboard/admin/primiumusers">
+            {/* <FaHome></FaHome> */}
+            <button className="btn btn-outline rounded-none shadow-md shadow-sky-600 mt-6 ml-4 text-white">
+              Premium Users
+            </button>
+          </NavLink>
+          <NavLink to="/dashboard/admin/movieslist">
+            {/* <FaHome></FaHome> */}
+            <button className="btn btn-outline rounded-none shadow-md shadow-sky-600 mt-6 ml-4 text-white">
+              Movies List
+            </button>
+          </NavLink>
+          <NavLink to="/dashboard/admin/addmovies">
+            {/* <FaHome></FaHome> */}
+            <button className="btn btn-outline rounded-none shadow-md shadow-sky-600 mt-6 ml-4 text-white">
+              Upload movies
+            </button>
+          </NavLink>
+        </div>
+
         <Outlet></Outlet>
       </div>
     </div>
@@ -73,26 +103,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-{
-  /* <div className="">
-          <h1 className="text-4xl font-serif  "> Your Profile</h1>
-          <div className="text-white mt-3">
-            <h2>
-              <span className="text-gray-400 font-bold ">Name:</span> Md Thouhid
-              Hussain
-            </h2>
-            <h2>
-              <span className=" text-gray-400 font-bold">Email: </span>
-              thouhidhussain98@gmail.com
-            </h2>
-          </div>
-          <div className="mt-4">
-            <h2 className="  text-4xl mt-5 font-serif">Connect </h2>
-            <p className="flex gap-3 my-1">
-              <FaFacebook className=" text-white text-xl" />
-              <FaLinkedin className=" text-blue-500 text-xl" />
-              <FcGoogle /> 
-            </p>
-          </div> */
-}

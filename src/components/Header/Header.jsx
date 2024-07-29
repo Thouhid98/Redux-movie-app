@@ -6,7 +6,7 @@ import {
   fetchAsyncMovies,
   fetchAsyncShows,
 } from "../../features/movies/movieSlice";
-import { monitorAuthState, logoutUser } from "../../features/authActions";
+import { monitorAuthState } from "../../features/authActions";
 
 const Header = () => {
   const [term, setTerm] = useState("");
@@ -14,9 +14,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.app.user);
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
-  };
+  // const handleLogout = () => {
+  //   dispatch(logoutUser());
+  // };
 
   useEffect(() => {
     dispatch(monitorAuthState());
@@ -64,7 +64,7 @@ const Header = () => {
               </Link>
             </div>
           </div>
-
+ 
           {/* <Link to="/login">
             <button
               onClick={handleLogout}
