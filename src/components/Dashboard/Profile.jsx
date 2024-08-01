@@ -1,10 +1,34 @@
 import React from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
+  const axiosSecure = useAxiosSecure();
+  const { user, loading } = useSelector((state) => state.app);
+
+  if (loading) {
+    return (
+      <span className="loading loading-spinner loading-lg">...loading</span>
+    );
+  }
+
+  const { data: watchedMovies = [], refetch } = useQuery({
+    queryKey: ["watchedMovies"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/watchedmovies/profile/${user?.email}`
+      );
+      return res.data;
+    },
+  });
+  console.log(watchedMovies);
   return (
     <div className="ml-4 mt-6  p-8 border-2">
       <div>
-        <h2 className="text-4xl mt-1 font-serif">Watched Movies</h2>
+        <h2 className="text-4xl mt-1 font-serif">
+          Watched Movies {watchedMovies.length}{" "}
+        </h2>
         <div>
           <div className="overflow-x-auto w-[800px]">
             <table className="table">
@@ -17,152 +41,48 @@ const Profile = () => {
                     </label>
                   </th>
                   <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>Genre</th>
+                  <th>Released Date</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                {/* row 1 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-                            alt="Avatar Tailwind CSS Component"
-                          />
+                {watchedMovies.map((movies, index) => (
+                  <tr key={movies._id}>
+                    <th>{index + 1}</th>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle h-12 w-12">
+                            <img
+                              src={movies.selectMovieOrShow.Poster}
+                              alt="Avatar Tailwind CSS Component"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="font-bold">
+                            {movies.selectMovieOrShow.Title}
+                          </div>
+                          <div className="text-sm opacity-50">
+                            {movies.selectMovieOrShow.imdbRating}
+                          </div>
                         </div>
                       </div>
-                      <div>
-                        <div className="font-bold">Hart Hagerty</div>
-                        <div className="text-sm opacity-50">United States</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    Zemlak, Daniel and Leannon
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Desktop Support Technician
-                    </span>
-                  </td>
-                  <td>Purple</td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </th>
-                </tr>
-                {/* row 2 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/tailwind-css-component-profile-3@56w.png"
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-bold">Brice Swyre</div>
-                        <div className="text-sm opacity-50">China</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    Carroll Group
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Tax Accountant
-                    </span>
-                  </td>
-                  <td>Red</td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </th>
-                </tr>
-                {/* row 3 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/tailwind-css-component-profile-4@56w.png"
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-bold">Marjy Ferencz</div>
-                        <div className="text-sm opacity-50">Russia</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    Rowe-Schoen
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Office Assistant I
-                    </span>
-                  </td>
-                  <td>Crimson</td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </th>
-                </tr>
-                {/* row 4 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src="https://img.daisyui.com/tailwind-css-component-profile-5@56w.png"
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-bold">Yancy Tear</div>
-                        <div className="text-sm opacity-50">Brazil</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    Wyman-Ledner
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Community Outreach Specialist
-                    </span>
-                  </td>
-                  <td>Indigo</td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </th>
-                </tr>
+                    </td>
+                    <td>
+                      {movies.selectMovieOrShow.Genre}
+                      <br />
+                      <span className="badge badge-ghost badge-sm">
+                        {movies.selectMovieOrShow.Director}
+                      </span>
+                    </td>
+                    <td>{movies.selectMovieOrShow.Released}</td>
+                    <th>
+                      <button className="btn btn-ghost btn-xs">details</button>
+                    </th>
+                  </tr>
+                ))}
               </tbody>
               {/* foot */}
               <tfoot>

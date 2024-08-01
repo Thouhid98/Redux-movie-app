@@ -1,9 +1,13 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Allusers = () => {
   const axiosSecure = useAxiosSecure();
+  const [isAdmin] = useAdmin();
+  console.log("Admin", isAdmin);
+
   const {
     data: totalusers = [],
     isPending: loading,

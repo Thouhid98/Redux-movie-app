@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,13 +10,8 @@ import { monitorAuthState } from "../../features/authActions";
 
 const Header = () => {
   const [term, setTerm] = useState("");
-
   const dispatch = useDispatch();
   const user = useSelector((state) => state.app.user);
-
-  // const handleLogout = () => {
-  //   dispatch(logoutUser());
-  // };
 
   useEffect(() => {
     dispatch(monitorAuthState());
@@ -56,23 +51,10 @@ const Header = () => {
           <div className="avatar online mt-2">
             <div className="w-12 rounded-full ">
               <Link to="/dashboard/profile">
-                <img
-                  className="cursor-pointer"
-                  // onClick={gotoProfile}
-                  src={user.photoURL}
-                />
+                <img className="cursor-pointer" src={user.photoURL} />
               </Link>
             </div>
           </div>
- 
-          {/* <Link to="/login">
-            <button
-              onClick={handleLogout}
-              className="absolute -ml-[46px] mt-8 font-semibold"
-            >
-              Logout
-            </button>
-          </Link> */}
         </div>
       ) : (
         <div className="avatar offline -mt-3">
